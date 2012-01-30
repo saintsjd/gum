@@ -25,7 +25,8 @@ Here are a few other questions I have about the git UI:
 
 Here is my shot at re-creating just a few parts of the Git UI. My hope is that all of these commands become part of git one day.
 
-## Staging files 
+Staging files 
+--------------
 
     # stage all changes, and file deletions. Everything except unknown files. Instead of git add -u, just type
     git stage
