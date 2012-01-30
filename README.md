@@ -34,7 +34,8 @@ Staging files
     # stage just one file change or deletion. Instead of git add FILE and git rm FILE, just type:
     git stage FILE
 
-## Unstaging Files
+Unstaging Files
+--------------
 
 Ooops. I staged a changed that I do not want to commit. 
 
@@ -45,7 +46,8 @@ Ooops. I staged a changed that I do not want to commit.
     git unstage
 
 
-## Undoing changes I have made:
+Undoing changes I have made:
+--------------
 
 Ok. I tried something. It does not work. Just get me back to the last commit.
 
@@ -55,7 +57,8 @@ Ok. I tried something. It does not work. Just get me back to the last commit.
     #just undo the changes I made to one file. Rather than git checkout FILE (side note: why is it not git reset FILE? or is it?) instead, just type: 
     git undo FILE
 
-## Deleting Files
+Deleting Files
+--------------
 
 Let's get rid of git rm. Lets not even tell newbies about it. Just delete files you want from your project, then:
 
@@ -63,7 +66,8 @@ Let's get rid of git rm. Lets not even tell newbies about it. Just delete files 
     git stage
     git stage FILE
 
-## Status
+Status
+--------------
 
 More readable. Less # signs. Less instructions.
 
@@ -77,7 +81,8 @@ More readable. Less # signs. Less instructions.
         M hello.c
         ? new.c
 
-## Automatic Setup
+Automatic Setup
+--------------
 
 The first time I run git from a new computer I am most often greeted with an error. Not a very friendly way to great new users. The message says that I have not set my email and user name. 
 
@@ -99,12 +104,14 @@ This replaces the more confusing:
     git config --global user.name "Scott Chacon"
     git config --global user.email "schacon@gmail.com"
 
-## Switching branches
+Switching branches
+--------------
 
     # I switch branches with the checkout command. I am being picky. But what if we had:
     git switch BRANCH
 
-## Showing things I have changed.
+Showing things I have changed.
+--------------
 
 This part of git is confusing. Instead of git diff HEAD, git diff, and git diff --cached
 
@@ -122,10 +129,14 @@ This part of git is confusing. Instead of git diff HEAD, git diff, and git diff 
     git diff branch1 branch2
     git diff AD34E BCDE543
 
-## Deleting a branch
+Deleting a branch
+--------------
 
     # Let's be consistent with git remote command. Instead of git branch -d 
     git branch rm BRANCH
+
+Where to from here?
+--------------
 
 I am going to make a small python wrapper to try out these commands. It will be called gum. And, it will just write git commands for you. 
 
