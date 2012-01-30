@@ -48,12 +48,13 @@ Ok. I tried something. It does not work. Just get me back to the last commit.
 
     # Undo all the changes I made to working directory.
     # Instead of git reset --hard HEAD, just type:
-    > git undo
+    > git rewind
+    (prompt the user to make sure they want to nuke their changes)
 
     # Just undo the changes I made to one file.
     # Rather than git checkout FILE (side note: why is it not git reset FILE? or is it?)
     # Instead, just type:
-    > git undo FILE
+    > git rewind FILE
 
 Deleting Files
 ----------
