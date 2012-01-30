@@ -130,4 +130,6 @@ I am going to make a small python wrapper to try out these commands. It will be 
 
 gum = Git User (interface) Makeover. "gum unstage" here we come!
 
+The code is on github: https://github.com/saintsjd/gum
+
 Comments welcome.
