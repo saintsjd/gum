@@ -1,6 +1,8 @@
 About
 ----------
 
+There is no code here yet. Just ideas for future development of git.
+
 Git is sweet tool. But, the UI could use some love. For more info see
 http://www.saintsjd.com/2012/01/a-better-ui-for-git/ ‎
 
