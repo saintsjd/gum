@@ -105,7 +105,6 @@ This replaces the more confusing error message that git shows users now:
     > git config --global user.email "gmail@gmail.com"
 
     DUFUS!! Just give up now. Seriously.
-    Switching branches
 
 Switching branches
 ---------
