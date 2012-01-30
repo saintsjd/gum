@@ -8,8 +8,8 @@ gum is a User (interface) Makeover for Git.
 
 This code is a small python wrapper to try out some of these improvements. gum just writes complex git commands for you. 
 
-    # Instead of: git reset --hard HEAD just type
-	> git undo
+    # Instead of: git reset HEAD -- file just type
+    > git unstage
 
 Gum runs git rest --hard HEAD for you.
 
