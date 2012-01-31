@@ -60,7 +60,8 @@ Ok. I tried something. It does not work. Just get me back to the last commit.
     # Automatically save the user's work in a stash, then
     # Instead of git stash; git reset --hard HEAD, just type:
     > git retreat
-    All files changed back to their state at the last commit. Your work has been saved in stash@{1}. 
+    All files changed back to their state at the last commit. 
+    Your work has been saved in stash@{1}. 
     
 
     # Just undo the changes I made to one file.
@@ -68,7 +69,8 @@ Ok. I tried something. It does not work. Just get me back to the last commit.
     # Rather than git checkout FILE (side note: why is it not git reset FILE? or is it?)
     # Instead, just type:
     > git retreat FILE
-    The file was changed back to the it's state at last commit. Your work has been saved in stash@{1}. 
+    The file was changed back to the it's state at last commit. 
+    Your work has been saved in stash@{1}. 
 
 Deleting Files
 ========
