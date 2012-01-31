@@ -1,24 +1,33 @@
 About
 ----------
 
-There is no code here yet. Just ideas for future development of git.
+gum is a small set of cli improvements for git
 
 Git is sweet tool. But, the UI could use some love. For more info see
 http://www.saintsjd.com/2012/01/a-better-ui-for-git/ ‎
 
-gum is a User (interface) Makeover for Git.
-
-This code is a small python wrapper to try out some of these improvements. gum just writes complex git commands for you. 
+Example:
 
     # Instead of: git reset HEAD -- file just type
     > git unstage
 
-Gum runs git rest --hard HEAD for you.
+Gum runs git reset HEAD -- file for you.
 
-My hope is that all of these commands become part of git one day. We can make git more fun for beginners and easier for forgetful intermediates like me.
+The gum project's goals:
+1. Improvements are different things to different people. So, gum will never get in the way of using regular git commands.
+2. Gum will work cross-platform: Mac, PC, Linux, others.
+3. Gum will make the most common things we do in git a bit more friendly. If we are good at what we do, then we can make git a bit easier to learn for newbies along the way. 
+
+There is no code here yet. Just ideas for future development of git. See the issue list to track progress.
+
+Thank you all for your enthusiastic and generous code contributions. I will be reviewing them over the course of this coming week. Then I will post the best implementation here.
+
+
+Ideas we are considering for implementation
+--------
 
 Staging files
-----------
+========
 
     # Stage all changes, and file deletions. Leave unknown files alone.
     # Instead of git add -u, just type:
@@ -29,7 +38,7 @@ Staging files
     > git stage FILE
 
 Unstaging Files
-----------
+========
 
 Ooops. I staged a changed that I do not want to commit.
 
@@ -42,22 +51,26 @@ Ooops. I staged a changed that I do not want to commit.
     > git unstage
 
 Undoing changes I have made:
-----------
+========
 
 Ok. I tried something. It does not work. Just get me back to the last commit.
 
     # Undo all the changes I made to working directory.
-    # Instead of git reset --hard HEAD, just type:
-    > git rewind
-    (prompt the user to make sure they want to nuke their changes)
+    # Automatically save the user's work in a stash, then
+    # Instead of git stash; git reset --hard HEAD, just type:
+    > git retreat
+    All files changed back to their state at the last commit. Your work has been saved in a stash. 
+    
 
     # Just undo the changes I made to one file.
+    # Automatically save a stash of the user's work first
     # Rather than git checkout FILE (side note: why is it not git reset FILE? or is it?)
     # Instead, just type:
-    > git rewind FILE
+    > git retreat FILE
+    Done. The file was changed back to the it's state at last commit. Your work has been saved in a stash. 
 
 Deleting Files
-----------
+========
 
 Let's get rid of git rm. Lets not even tell newbies about it. Just delete files you want from your project, then:
 
@@ -66,7 +79,7 @@ Let's get rid of git rm. Lets not even tell newbies about it. Just delete files 
     > git stage FILE
 
 Status
-----------
+========
 
 More readable. Less # signs. Less instructions.
 
@@ -82,8 +95,10 @@ More readable. Less # signs. Less instructions.
 
 Nice and clean. No reminders about how to undo things... you already know that: git undo. And, no # signs!!
 
+Defaulting to "status -s" might be good enough here. 
+
 Automatic Setup
-----------
+========
 
 The first time I run git from a new computer I am most often greeted with an error. Not a very friendly way to great new users. The message says that I have not set my email and user name.
 
@@ -108,13 +123,13 @@ This replaces the more confusing error message that git shows users now:
     DUFUS!! Just give up now. Seriously.
 
 Switching branches
----------
+========
 
     # I switch branches with the checkout command. Its ok, but what if we had:
     > git switch BRANCH
 
 Showing things I have changed
----------
+========
 
 This is one of the most important parts of git. And, it is confusing.
 
@@ -141,7 +156,7 @@ This is one of the most important parts of git. And, it is confusing.
     > git diff AD34E BCDE543
 
 Deleting a branch
----------
+========
 
     # Let's be consistent with git remote command. Instead of git branch -d
     > git branch rm BRANCH
