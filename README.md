@@ -14,9 +14,9 @@ Example:
 Gum runs git reset HEAD -- file for you.
 
 The gum project's goals:
-  1. Improvements are different things to different people. So, gum will never get in the way of using regular git commands.
-  1. Gum will work cross-platform: Mac, PC, Linux, others.
-  1. Gum will make the most common things we do in git a bit more friendly. If we are good at what we do, then we can make git a bit easier to learn for newbies along the way. 
+  1.  Improvements are different things to different people. So, gum will never get in the way of using regular git commands.
+  1.  Gum will work cross-platform: Mac, PC, Linux, others.
+  1.  Gum will make the most common things we do in git a bit more friendly. If we are good at what we do, then we can make git a bit easier to learn for newbies along the way. 
 
 There is no code here yet. Just ideas for future development of git. See the issue list to track progress.
 
