@@ -1,165 +1,90 @@
 About
 ----------
 
-gum is a small set of cli improvements for git
-
-Git is sweet tool. But, the UI could use some love. For more info see
+Git is an amazing tool, but the UI could use some love. For more info see:
 http://www.saintsjd.com/2012/01/a-better-ui-for-git/ ‎
 
-Example:
+gum is a small set of UI improvements for git. It is very much a work in progress
 
-    # Instead of: git reset HEAD -- file just type
-    > git unstage
+Installing Gum
+=====
 
-Gum runs git reset HEAD -- file for you.
+Just add the aliases to your .gitconfig file.
 
-The gum project's goals:
+    [alias]
+        # tell git to ignore a file
+        ignore="!f() { [ -z "$@" ] && echo "git: usage git ignore [file]" || ( ([ ! -e .gitignore ] && touch .gitignore); echo $1 >>.gitignore && echo "Ignoring file $1" && git rm --cached "$@" > /dev/null 2>&1 && git status -s ); }; f"
 
-1.  Improvements are different things to different people. So, gum will never get in the way of using regular git commands.
-1.  Gum will work cross-platform: Mac, PC, Linux, others.
-1.  Gum will make the most common things we do in git a bit more friendly. If we are good at what we do, then we can make git a bit easier to learn for newbies along the way. 
+        #add files to the staging area
+        freeze="!f() { ( [ -z $@ ] && git add -A || git add -A "$@" ) && git status -s; }; f"
 
-There is no code here yet. Just ideas for future development of git. See the issue list to track progress.
+        # remove files from the staging area
+        unfreeze="!f() { ([ -z "$@" ] && (git reset -q HEAD > /dev/null 2>&1 || echo "first commit must be unfrozen file by file. better error message coming soon") || (git reset -q HEAD -- $@ > /dev/null 2>&1 || git rm -q --cached $@ ) ) && git status -s ; }; f"
+	
+        # eventually we want to make nicer output but for now
+        st=status -s
+	
+        # Navigate through the log - eventually allow for git history back and git history forward to flip through old versions like mac time machine
+        history=log
+		
+	
+Usage
+======
 
-Thank you all for your enthusiastic and generous code contributions. I will be reviewing them over the course of this coming week. Then I will post the best implementation here.
+    # stage/freeze a snapshot of my project (including new and deleted files)
+    # then shows a quick preview. Commit it if you like what you see
+    > git freeze
 
+    # stage/freeze a snapshot of one file (including new and deleted files)
+    # then shows a quick preview. Commit it if you like what you see.
+    > git freeze <file>
 
-Ideas we are considering for implementation
---------
+    # unstage/unfreeze all changes in the snapshot (including new and deleted files)
+    > git unfreeze
 
-Staging files
-========
+    # unstage/unfreeze one file in the snapshot (including new and deleted files)
+    > git unfreeze <file>
 
-    # Stage all changes, and file deletions. Leave unknown files alone.
-    # Instead of git add -u, just type:
-    > git stage
+    # smarter file ignoring
+    # adds the file to .gitignore
+    # also runs git rm --cached file for you! (I always forget to do that)
+    > git ignore <file>
 
-    # Stage just one file change or deletion.
-    # Instead of git add FILE and git rm FILE, just type:
-    > git stage FILE
-
-Unstaging Files
-========
-
-Ooops. I staged a changed that I do not want to commit.
-
-    # Remove one file from the stage.
-    # Instead of git reset HEAD -- file, just type:
-    > git unstage FILE
-
-    # unstage all the files you have in the stage right now.
-    # Instead of git reset HEAD, just type:
-    > git unstage
-
-Undoing changes I have made:
-========
-
-Ok. I tried something. It does not work. Just get me back to the last commit.
-
-    # Undo all the changes I made to working directory.
-    # Automatically save the user's work in a stash, then
-    # Instead of git stash; git reset --hard HEAD, just type:
-    > git retreat
-    All files changed back to their state at the last commit. 
-    Your work has been saved in stash@{1}. 
+    # check the status of my files... right now this just runs git status -s. This will get facier.
+    > git st
     
+Features to Come! 
+=====
 
-    # Just undo the changes I made to one file.
-    # Automatically save a stash of the user's work first
-    # Rather than git checkout FILE (side note: why is it not git reset FILE? or is it?)
-    # Instead, just type:
-    > git retreat FILE
-    The file was changed back to the it's state at last commit. 
-    Your work has been saved in stash@{1}. 
-
-Deleting Files
-========
-
-Let's get rid of git rm. Lets not even tell newbies about it. Just delete files you want from your project, then:
-
-    # smart enough to stage files you have removed as well!!!!
-    > git stage
-    > git stage FILE
-
-Status
-========
-
-More readable. Less # signs. Less instructions.
-
-    > git status
-
-    Staged for commit:
+    # cleaner output by default for status
+    > git st
+    Frozen snapshot ready for commit:
         M daemon.c
         N test.txt
 
-    Unstaged Changes (will NOT be committed):
+    Unfrozen Changes (will NOT be committed):
         M hello.c
         ? new.c
+        
+    # synchronize all changes with my remote branch
+    # like github for mac and legit... automatically runs stash, pull, push, unstash
+    > git sync <remote>
+    
+    
+    # browse old revisions like Mac TimeMachine...
+    
+		# go back one revision
+    > git history back
+    
+		# go forward one revision
+    > git history forward
+    
+		# go back, back, back, then return to latest
+    > git history back
+    > git history back
+    > git history back
+    > git history latest
+    
+    # display log
+    > git history
 
-Nice and clean. No reminders about how to undo things... you already know that: git undo. And, no # signs!!
-
-Defaulting to "status -s" might be good enough here. 
-
-Automatic Setup
-========
-
-The first time I run git from a new computer I am most often greeted with an error. Not a very friendly way to great new users. The message says that I have not set my email and user name.
-
-If this error occurs, shouldn't git just ask me for this information and proceed with the command I typed? Yep, it should.
-
-    # my first ever commit with GIT! Don't greet me with an error.
-    > git commit -m "yippeee git!"
-
-    Howdy! So that git can give you credit for changes you make
-        Please enter your name? Jon Saints
-        Please enter your email? email@gmail.com
-    Thank you! Committing...
-
-This replaces the more confusing error message that git shows users now:
-
-    Error 123: Look! another stupid user is _trying_ to learn git. 
-
-    You should have known to type this first:
-    > git config --global user.name "Jon Saints"
-    > git config --global user.email "gmail@gmail.com"
-
-    DUFUS!! Just give up now. Seriously.
-
-Switching branches
-========
-
-    # I switch branches with the checkout command. Its ok, but what if we had:
-    > git switch BRANCH
-
-Showing things I have changed
-========
-
-This is one of the most important parts of git. And, it is confusing.
-
-    # What is the output? Can you remember which is which?
-    # git diff
-    # git diff HEAD
-    # git diff --cached or git diff CACHED?
-
-    # Instead we can... 
-
-    # Show all changes from the last commit
-    > git diff
-    # or
-    > git diff HEAD
-
-    # Show difference between the stage and my code
-    > git diff STAGE
-
-    # Difference between my stage and last commit
-    > git diff STAGE HEAD
-
-    # Difference between two branches or revisions
-    > git diff branch1 branch2
-    > git diff AD34E BCDE543
-
-Deleting a branch
-========
-
-    # Let's be consistent with git remote command. Instead of git branch -d
-    > git branch rm BRANCH
