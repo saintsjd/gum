@@ -34,11 +34,11 @@ Usage
 ======
 
     # stage/freeze a snapshot of my project (including new and deleted files)
-    # then shows a quick preview. Commit it if you like what you see
+    # also shows a quick preview. Commit it if you like what you see. unfreeze if you don't.
     > git freeze
 
     # stage/freeze a snapshot of one file (including new and deleted files)
-    # then shows a quick preview. Commit it if you like what you see.
+    # also shows a quick preview. Commit it if you like it. unfreeze if you don't.
     > git freeze <file>
 
     # unstage/unfreeze all changes in the snapshot (including new and deleted files)
