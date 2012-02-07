@@ -57,7 +57,7 @@ Features to Come!
 =====
 
     # cleaner output by default for status
-    > git st
+    > git status
     Frozen snapshot ready for commit:
         M daemon.c
         N test.txt
@@ -73,13 +73,13 @@ Features to Come!
     
     # browse old revisions like Mac TimeMachine...
     
-		# go back one revision
+    # go back one revision
     > git history back
     
-		# go forward one revision
+    # go forward one revision
     > git history forward
     
-		# go back, back, back, then return to latest
+    # go back, back, back, then return to latest
     > git history back
     > git history back
     > git history back
