@@ -12,6 +12,8 @@ Installing Gum
 Just add the aliases to your .gitconfig file.
 
     [alias]
+        # gum aliases for git version 1
+    
         # tell git to ignore a file
         ignore="!f() { [ -z "$@" ] && echo "git: usage git ignore [file]" || ( ([ ! -e .gitignore ] && touch .gitignore); echo $1 >>.gitignore && echo "Ignoring file $1" && git rm --cached "$@" > /dev/null 2>&1 && git status -s ); }; f"
 
