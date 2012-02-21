@@ -52,7 +52,7 @@ Usage
     # also runs git rm --cached file for you! (I always forget to do that)
     > git ignore <file>
 
-    # check the status of my files... right now this just runs git status -s. This will get facier.
+    # check the status of my files... right now this just runs git status -s. This will get fancier.
     > git st
     
 Features to Come! 
