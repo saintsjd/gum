@@ -24,7 +24,7 @@ Just add the aliases to your .gitconfig file.
         unfreeze="!f() { ([ -z "$@" ] && (git reset -q HEAD > /dev/null 2>&1 || echo "first commit must be unfrozen file by file. better error message coming soon") || (git reset -q HEAD -- $@ > /dev/null 2>&1 || git rm -q --cached $@ ) ) && git st; }; f"
 	
         # Show short status with current branch name
-        st="!f() { br=$(git name-rev --name-only HEAD) && echo "Branch: ${br}" && git status -s; }; f"
+        st="!f() { br=$(git status | head -1) && echo "${br}" && git status -s; }; f"
     	
         # Navigate through the log - eventually allow for git history back and git history forward to flip through old versions like mac time machine
         history=log
