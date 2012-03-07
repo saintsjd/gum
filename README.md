@@ -12,20 +12,20 @@ Installing Gum
 Just add the aliases to your .gitconfig file.
 
     [alias]
-        # gum aliases for git version 1
+        # gum aliases for git version 2
     
         # tell git to ignore a file
-        ignore="!f() { [ -z "$@" ] && echo "git: usage git ignore [file]" || ( ([ ! -e .gitignore ] && touch .gitignore); echo $1 >>.gitignore && echo "Ignoring file $1" && git rm --cached "$@" > /dev/null 2>&1 && git status -s ); }; f"
+        ignore="!f() { [ -z "$@" ] && echo "git: usage git ignore [file]" || ( ([ ! -e .gitignore ] && touch .gitignore); echo $1 >>.gitignore && echo "Ignoring file $1" && git rm --cached "$@" > /dev/null 2>&1 && git st ); }; f"
 
         #add files to the staging area
-        freeze="!f() { ( [ -z $@ ] && git add -A || git add -A "$@" ) && git status -s; }; f"
+        freeze="!f() { ( [ -z $@ ] && git add -A || git add -A "$@" ) && git st; }; f"
 
         # remove files from the staging area
-        unfreeze="!f() { ([ -z "$@" ] && (git reset -q HEAD > /dev/null 2>&1 || echo "first commit must be unfrozen file by file. better error message coming soon") || (git reset -q HEAD -- $@ > /dev/null 2>&1 || git rm -q --cached $@ ) ) && git status -s ; }; f"
+        unfreeze="!f() { ([ -z "$@" ] && (git reset -q HEAD > /dev/null 2>&1 || echo "first commit must be unfrozen file by file. better error message coming soon") || (git reset -q HEAD -- $@ > /dev/null 2>&1 || git rm -q --cached $@ ) ) && git st; }; f"
 	
-        # eventually we want to make nicer output but for now
-        st=status -s
-	
+        # Show short status with current branch name
+        st="!f() { br=$(git name-rev --name-only HEAD) && echo "Branch: ${br}" && git status -s; }; f"
+    	
         # Navigate through the log - eventually allow for git history back and git history forward to flip through old versions like mac time machine
         history=log
 		
