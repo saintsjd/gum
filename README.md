@@ -14,9 +14,6 @@ Just add the aliases to your .gitconfig file.
     [alias]
         # gum aliases for git version 3
     
-        # tell git to ignore a file
-        ignore="!f() { [ -z "$@" ] && echo "git: usage git ignore [file]" || ( ([ ! -e .gitignore ] && touch .gitignore); echo $1 >>.gitignore && echo "Ignoring file $1" && git rm --cached "$@" > /dev/null 2>&1 && git st ); }; f"
-
         #add files to the staging area
         freeze="!f() { ( [ -z $@ ] && git add -A || git add -A "$@" ) && git st; }; f"
 
@@ -25,10 +22,7 @@ Just add the aliases to your .gitconfig file.
 	
         # Show short status with current branch name
         st="!f() { br=$(git status | head -1) && echo "${br}" && git status -s; }; f"
-    	
-        # Navigate through the log - eventually allow for git history back and git history forward to flip through old versions like mac time machine
-        history=log
-		
+    			
 	
 Usage
 ======
@@ -47,15 +41,10 @@ Usage
     # unstage/unfreeze one file in the snapshot (including new and deleted files)
     > git unfreeze <file>
 
-    # smarter file ignoring
-    # adds the file to .gitignore
-    # also runs git rm --cached file for you! (I always forget to do that)
-    > git ignore <file>
-
     # check the status of my files... right now this just runs git status -s. This will get fancier.
     > git st
     
-Features to Come! 
+Feature Ideas! 
 =====
 
     # cleaner output by default for status
